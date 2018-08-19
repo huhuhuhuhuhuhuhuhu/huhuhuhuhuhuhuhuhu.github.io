@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html>
+    <!-- title -->
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="author" content="John Doe">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="John Doe">
+    <meta name="keywords" content="Hexo | John Doe">
+    <meta name="description" content="">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>Anisble · My Blog.</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s 1;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href= /css/style.css?v=20180721 as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= /css/mobile.css?v=20180721 media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href= "/assets/favicon.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Huhao&#39;s Blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">Anisble</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>Huhao's Blog</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style=
+
+
+
+
+
+
+
+
+height:50vh;
+
+>
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            Anisble
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count">2,636</span> / Reading time: <span class="post-count">11 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2018/08/19</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="Ansible："><a href="#Ansible：" class="headerlink" title="Ansible："></a>Ansible：</h1><p>基于python语言开发，agentless无需部署代理，中小型应用环境</p>
+<h4 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h4><p>创始人：Michael DeHaan（Cobbler与Func的作者）<br>2012-03-09，发布0.0.1版，红帽收购<br>2015-10-17，Red Hat宣布收购<br>用法类似于编写脚本<br>ansible也有各种命令<br>ansible playbook（“剧本”）就相当于用ansible命令写的脚本<br>ansible roles（“角色”），解决剧本过于复杂问题</p>
+<h4 id="特性："><a href="#特性：" class="headerlink" title="特性："></a>特性：</h4><p>模块化：调用特定的模块，完成特定任务<br>三个关键模块：有Paramiko（基于ssh服务开发的远程通讯模块），PyYAML（剧本编写语言）Jinja2（模板语言）<br>支持自定义模块<br>基于Python语言实现<br>部署简单，基于python和SSH（默认已安装），agentless无代理依靠shh服务实现<br>安全，基于OpenSSH<br>支持playbook编排任务<br>幂等性：一个任务执行1遍和执行n遍效果一样，不因重复执行带来意外情况<br>无需代理不依赖PKI（无需ssl）<br>可使用任何编程语言写模块<br>YAML格式，编排任务，支持丰富的数据结构<br>较强大的多层解决方案</p>
+<h4 id="主要组成部分："><a href="#主要组成部分：" class="headerlink" title="主要组成部分："></a>主要组成部分：</h4><p>ANSIBLE PLAYBOOKS：任务剧本（任务集），编排定义Ansible任务集的配置文件，由Ansible顺序依次执行，通常是JSON格式的YML文件<br>INVENTORY：Ansible管理主机的清单/etc/anaible/hosts<br>MODULES：Ansible执行命令的功能模块，多数为内置的核心模块，也可自定义<br>PLUGINS：模块功能的补充，如连接类型插件、循环插件、变量插件、过滤插件等，该功能不常用<br>API：供第三方程序调用的应用程序编程接口<br>ANSIBLE：组合INVENTORY、API、MODULES、PLUGINS的绿框，可以理解为是ansible命令工具，其为核心执行工具</p>
+<h4 id="Ansible-playbook（剧本）执行过程："><a href="#Ansible-playbook（剧本）执行过程：" class="headerlink" title="Ansible-playbook（剧本）执行过程："></a>Ansible-playbook（剧本）执行过程：</h4><p>1、将已有编排好的任务集写入Ansible-Playbook<br>2、通过ansible-playbook命令分拆任务集至逐条ansible命令，按预定规则逐条执行</p>
+<h4 id="Ansible主要操作对象："><a href="#Ansible主要操作对象：" class="headerlink" title="Ansible主要操作对象："></a>Ansible主要操作对象：</h4><p>HOSTS主机<br>NETWORKING网络设备<br>注意：<br>执行ansible的主机一般称为主控端，中控，master或堡垒机<br>主控端Python版本需要2.6或以上<br>被控端Python版本小于2.4需要安装python-simplejson<br>被控端如开启SELinux，需要安装libselinux-python（selinux一般不开启）<br>windows不能做为主控端</p>
+<h4 id="Ansible安装方式："><a href="#Ansible安装方式：" class="headerlink" title="Ansible安装方式："></a>Ansible安装方式：</h4><p>1、rpm包安装：EPEL源<br>yum install ansible<br>2、Git方式：<br>git clone git://github.com/ansible/ansible.git –recursive<br>cd ./ansible<br>source ./hacking/env-setup<br>3、pip安装：pip是安装Python包的管理器，类似yum<br>yum install python-pip python-devel<br>yum install gcc glibc-devel zibl-devel rpm-bulid openssl-devel<br>pip install –upgrade pip<br>pip install ansible –upgrade<br>确认安装：ansible –version</p>
+<h5 id="rpm包安装："><a href="#rpm包安装：" class="headerlink" title="rpm包安装："></a>rpm包安装：</h5><p>EPEL源<br>yum install ansible<br>编译安装:<br>yum -y install python-jinja2 PyYAML python-paramiko python-babel python-crypto<br>tar xf ansible-1.5.4.tar.gz<br>cd ansible-1.5.4<br>python setup.py build<br>python setup.py install<br>mkdir /etc/ansible<br>cp -r examples/* /etc/ansible</p>
+<h5 id="相关文件："><a href="#相关文件：" class="headerlink" title="相关文件："></a>相关文件：</h5><p>配置文件：<br>/etc/ansible/ansible.cfg，主配置文件，配置ansible工作特性<br>/etc/ansible/hosts，主机清单<br>/etc/ansible/roles/，存放角色的目录<br>程序：<br>/usr/bin/ansible，主程序，临时命令执行工具<br>/usr/bin/ansible-doc，查看配置文档，模块功能查看工具<br>/usr/bin/ansible-galaxy，下载/上传优秀代码或Roles模块的官网平台<br>/usr/bin/ansible-playbook，定制自动化任务，编排剧本工具/usr/bin/ansible-pull<br>远程执行命令的工具：<br>/usr/bin/ansible-vault，文件加密工具<br>/usr/bin/ansible-console，基于Console界面与用户交互的执行工具</p>
+<h5 id="Inventory主机清单："><a href="#Inventory主机清单：" class="headerlink" title="Inventory主机清单："></a>Inventory主机清单：</h5><p>ansible的主要功用在于批量主机操作，为了便捷地批量管理主机，可以在inventory file中将其分组命名<br>默认的inventory file为/etc/ansible/hosts<br>inventory file可以有多个，且也可以通过Dynamic Inventory来动态生成<br>注意：无主机清单将无法管理任何主机，被控端必须放在主机清单中<br>/etc/ansible/hosts文件格式：<br>inventory文件遵循INI文件风格，中括号中的字符为组名。可以将同一个主机同时归并到多个不同的组中；此外，当如若目标主机使用了非默认的SSH端口，还可以在主机名称之后使用冒号加端口号来标明<br>例：<br>[webservers]<br>www1.magedu.com:2222<br>www2.magedu.com<br>192.168.30.101<br>192.168.30.102<br>[dbservers]<br>db1.magedu.com<br>db2.magedu.com<br>db3.magedu.com<br>192.168.30.101<br>192.168.30.103<br>如果主机名称遵循相似的命名模式，还可以使用列表的方式标识各主机<br>例：<br>[websrvs]<br>www[01:100].example.com<br>[dbsrvs]<br>db-[a:f].example.com<br>[appservers]<br>192.168.30.10[4:6]</p>
+<h4 id="Ansible系列命令："><a href="#Ansible系列命令：" class="headerlink" title="Ansible系列命令："></a>Ansible系列命令：</h4><p>ansible、ansible-doc、ansible-playbook、ansible-vault、ansible-console、ansible-galaxy、ansible-pull</p>
+<h5 id="ansible-doc命令："><a href="#ansible-doc命令：" class="headerlink" title="ansible-doc命令："></a>ansible-doc命令：</h5><p>显示模块帮助，类似于man帮助<br>ansible-doc [options] [module…]<br>-a，显示所有模块的文档（太多，不常用）<br>-l|–list，列出可用模块<br>-s|–snippet，显示指定模块的playbook片段（简单模式显示模块用法）</p>
+<h5 id="ansible命令："><a href="#ansible命令：" class="headerlink" title="ansible命令："></a>ansible命令：</h5><p>ansible通过ssh实现配置管理、应用部署、任务执行等功能，建议配置ansible端能基于密钥认证的方式联系各被管理节点（方便管理，不用每次操作都输密码）<br>ansible host-pattern [-m module_name] [-a args]<br>参数：<br>-a args：指定在对方主机上执行的操作<br>选项：<br>–version，显示版本<br>-m module，指定模块，默认为command<br>-v，详细过程；-vv、-vvv更详细<br>–list-hosts，显示主机列表，可简写–list<br>-k|–ask-pass，提示输入连接密码，默认Key验证<br>-K|–ask-become-pass，提示输入sudo密码<br>-C|–check，检查，并不执行（有语法检测功能，用于测试）<br>-T|–timeout=N，执行命令的超时时间，默认10s<br>-u|–user=REMOTE_USER，执行远程执行的用户<br>-b|–become，代替旧版的sudo切换<br>Host-pattern：匹配主机的列表<br>All：表示所有Inventory中的所有主机<br><em>：通配符<br>ansible “</em>” -m ping<br>ansible 192.168.1.<em> -m ping<br>ansible “</em>srvs” -m ping<br>:（或关系）：<br>例：ansible “websrvs:appsrvs” -m ping，在websrvs组或在dbsrvs组中的主机<br>:&amp;（逻辑与）：<br>例：ansible “websrvs:&amp;dbsrvs” -m ping，在websrvs组并且在dbsrvs组中的主机<br>:!（逻辑非）：<br>ansible ‘websrvs:!dbsrvs’ -m ping，在websrvs组但不在dbsrvs组中的主机<br>注意：此处必须用单引号<br>综合逻辑：<br>ansible ‘websrvs:dbsrvs:&amp;appsrvs:!ftpsrvs’ -m ping<br>正则表达式：<br>ansible “websrvs:&amp;dbsrvs” -m ping == ansible “^(web|db)srvs” -m ping</p>
+<h4 id="ansible命令执行过程："><a href="#ansible命令执行过程：" class="headerlink" title="ansible命令执行过程："></a>ansible命令执行过程：</h4><p>1、加载自己的配置文件，默认/etc/ansible/ansible.cfg<br>2、加载自己对应的模块文件，如command<br>3、通过ansible将模块或命令生成对应的临时py文件，并将该文件传输至远程服务器的对应执行用户$HOME/.ansible/tmp/ansible-tmp-数字/XXX.PY文件（文件名随机生成）<br>4、给文件+x执行<br>5、执行并返回结果<br>6、删除临时py文件，sleep 0退出<br>执行状态：<br>绿色：执行成功并且不需要做改变的操作<br>黄色：执行成功并且对目标主机做变更<br>红色：执行失败</p>
+<h4 id="ansible常用模块："><a href="#ansible常用模块：" class="headerlink" title="ansible常用模块："></a>ansible常用模块：</h4><p>有大量模块，介绍几个简单常用模块<br>Ping：检测远程管理的主机的网络连通性</p>
+<p>Command：在远程主机执行命令，默认模块，可忽略-m选项<br>例：<br>ansible srvs [-m command] -a‘service vsftpd start’<br>ansible srvs -a‘echo magedu |passwd –stdin wang’，会执行失败<br>注意：此命令不支持 $VARNAME、&lt;、&gt;、|、；、&amp;等，需用shell模块实现</p>
+<p>Shell：和command相似，用shell执行命令<br>例：<br>ansible srv -m shell -a ‘echo magedu |passwd –stdin wang’<br>调用bash执行命令<br>注意：类似cat /tmp/stanley.md | awk -F‘|’‘{print $1,$2}’ &amp;&gt;/tmp/example.txt，这种复杂命令，即使使用shell也可能会失败，解决办法：写到脚本，copy到远程，执行，再把需要的结果拉回执行命令的机器</p>
+<p>Script：运行脚本<br>例：<br>ansible websrvs -a“/PATH/TO/SCRIPT_FILE”<br>ansible websrvs -m script -a SCRIPT_FILE</p>
+<p>Copy：从服务器复制文件到客户端<br>例：<br>ansible srv -m copy -a“src=/root/f1.sh dest=/tmp/f2.sh owner=wang mode=600 backup=yes”<br>若目标存在，默认覆盖，backup指定先备份<br>ansible srv -m copy -a“content=‘hello\nthanks\n’ dest=/tmp/f1.txt”<br>编写简单内容，直接生成目标文件</p>
+<p>Cron：计划任务<br>支持时间：minute、hour、day、month、weekday<br>例：<br>ansible srv -m cron -a “minute=*/5 job=‘/usr/sbin/ntpdate 172.16.0.1 &amp;&gt;/dev/null’<br>name=Synctime” ，创建任务<br>ansible srv -m cron -a ‘state=absent name=Synctime’，删除任务</p>
+<p>Fetch：从客户端取文件至服务器端，copy相反，必须是文件，目录需先tar<br>例：<br>ansible srv -m fetch -a‘src=/root/a.sh dest=/data/scripts’</p>
+<p>File：创建文件或目录，设置文件属性<br>例：<br>ansible srv -m file -a “path=/root/a.sh owner=wang mode=755”<br>ansible web -m file -a ‘src=/app/testfile dest=/app/testfile-link state=link’</p>
+<p>Hostname：管理主机名<br>例：<br>ansible node1 -m hostname -a“name=websrv”</p>
+<p>Yum：管理包<br>例：<br>ansible srv -m yum -a‘name=httpd state=latest’，安装<br>ansible srv -m yum -a‘name=httpd state=absent’，删除</p>
+<p>Service：管理服务<br>例：<br>ansible srv -m service -a‘name=httpd state=stopped|started|reloaded|restarted [enabled=yes]’</p>
+<p>User：管理用户<br>例：<br>ansible srv -m user -a‘name=user1 comment=“test user”uid=2048 home=/app/user1 group=root’<br>创建普通用户<br>ansible srv -m user -a‘name=sysuser1 system=yes home=/app/sysuser1’，创建系统用户<br>ansible srv -m user -a‘name=user1 state=absent remove=yes’，删除用户及家目录等数据</p>
+<p>Group：管理组<br>例：<br>ansible srv -m group -a“name=testgroup system=yes”，创建组<br>ansible srv -m group -a“name=testgroup state=absent”，删除组</p>
+<h4 id="ansible-galaxy命令："><a href="#ansible-galaxy命令：" class="headerlink" title="ansible-galaxy命令："></a>ansible-galaxy命令：</h4><p>连接<a href="https://galaxy.ansible.com下载相应的roles" target="_blank" rel="noopener">https://galaxy.ansible.com下载相应的roles</a><br>列出所有已安装的galaxy：<br>ansible-galaxy list<br>安装galaxy：<br>ansible-galaxy install geerlingguy.app_name<br>删除galaxy：<br>ansible-galaxy remove geerlingguy.app_name</p>
+<h4 id="ansible-pull命令："><a href="#ansible-pull命令：" class="headerlink" title="ansible-pull命令："></a>ansible-pull命令：</h4><p>推送命令至远程，效率无限提升，对运维要求较高，但是并不常用</p>
+<h4 id="Ansible-vault命令："><a href="#Ansible-vault命令：" class="headerlink" title="Ansible-vault命令："></a>Ansible-vault命令：</h4><p>功能：管理加密解密yml文件<br>ansible-vault encrypt hello.yml，加密playbook文件<br>ansible-vault decrypt hello.yml，解密<br>ansible-vault view hello.yml，查看<br>ansible-vault edit hello.yml，编辑加密文件<br>ansible-vault rekey hello.yml，修改口令<br>ansible-vault create new.yml，创建新文件</p>
+<h4 id="Ansible-console命令："><a href="#Ansible-console命令：" class="headerlink" title="Ansible-console命令："></a>Ansible-console命令：</h4><p>2.0+新增，可交互执行命令，支持tab<br>交互界面：root@test (2)[f:10]$<br>参数解释：用户@默认主机清单（清单中主机数）[并发执行数]$<br>cd <hosts>，可切换主机清单<br>forks N，可指定并发执行数<br>？，可以查看所有可用模块</hosts></p>
+<h4 id="Ansible-playbook："><a href="#Ansible-playbook：" class="headerlink" title="Ansible-playbook："></a>Ansible-playbook：</h4><p>ansible-playbook playbook_name.yml<br>playbook：<br>类似脚本文件，采用YAML语言编写，文件名一般以.yml结尾<br>主要功能在于将事先归并为一组的主机装扮成事先通过ansible中的task定义好的角色。从根本上来讲，所谓task无非是调用ansible的一个module。将多个play组织在一个playbook中，即可以让它们联同起来按事先编排的机制同唱一台大戏</p>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者: <a href="http://yoursite.com">John Doe</a>
+            <p>原文链接: <a href="http://yoursite.com/2018/08/19/anisble/">http://yoursite.com/2018/08/19/anisble/</a>
+            <p>发表日期: <a href="http://yoursite.com/2018/08/19/anisble/">August 19th 2018, 3:46:03 pm</a>
+            <p>版权声明: 本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2018/08/17/hello-world/" title= Hello World >
+                    <div class="prevTitle">Hello World</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC和WAP自适应版-->
+
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+    
+        
+            
+                <a href="//github.com/huhuhuhuhuhuhuhuhu" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title=wechat>
+                  
+                  <img class="profile-qr" src="/assets/1.jpg" />
+                </span>
+            
+        
+    
+        
+    
+        
+            
+                <a href="https://weibo.com/5718576294/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" class="iconfont-archer weibo" target="_blank" title=weibo></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ansible："><span class="toc-number">1.</span> <span class="toc-text">Ansible：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#简介："><span class="toc-number">1.0.0.1.</span> <span class="toc-text">简介：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特性："><span class="toc-number">1.0.0.2.</span> <span class="toc-text">特性：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#主要组成部分："><span class="toc-number">1.0.0.3.</span> <span class="toc-text">主要组成部分：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ansible-playbook（剧本）执行过程："><span class="toc-number">1.0.0.4.</span> <span class="toc-text">Ansible-playbook（剧本）执行过程：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ansible主要操作对象："><span class="toc-number">1.0.0.5.</span> <span class="toc-text">Ansible主要操作对象：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ansible安装方式："><span class="toc-number">1.0.0.6.</span> <span class="toc-text">Ansible安装方式：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#rpm包安装："><span class="toc-number">1.0.0.6.1.</span> <span class="toc-text">rpm包安装：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#相关文件："><span class="toc-number">1.0.0.6.2.</span> <span class="toc-text">相关文件：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Inventory主机清单："><span class="toc-number">1.0.0.6.3.</span> <span class="toc-text">Inventory主机清单：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ansible系列命令："><span class="toc-number">1.0.0.7.</span> <span class="toc-text">Ansible系列命令：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#ansible-doc命令："><span class="toc-number">1.0.0.7.1.</span> <span class="toc-text">ansible-doc命令：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ansible命令："><span class="toc-number">1.0.0.7.2.</span> <span class="toc-text">ansible命令：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ansible命令执行过程："><span class="toc-number">1.0.0.8.</span> <span class="toc-text">ansible命令执行过程：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ansible常用模块："><span class="toc-number">1.0.0.9.</span> <span class="toc-text">ansible常用模块：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ansible-galaxy命令："><span class="toc-number">1.0.0.10.</span> <span class="toc-text">ansible-galaxy命令：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ansible-pull命令："><span class="toc-number">1.0.0.11.</span> <span class="toc-text">ansible-pull命令：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ansible-vault命令："><span class="toc-number">1.0.0.12.</span> <span class="toc-text">Ansible-vault命令：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ansible-console命令："><span class="toc-number">1.0.0.13.</span> <span class="toc-text">Ansible-console命令：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ansible-playbook："><span class="toc-number">1.0.0.14.</span> <span class="toc-text">Ansible-playbook：</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 2
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/19</span><a class="archive-post-title" href= "/2018/08/19/anisble/" >Anisble</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2018/08/17/hello-world/" >Hello World</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "John Doe"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
