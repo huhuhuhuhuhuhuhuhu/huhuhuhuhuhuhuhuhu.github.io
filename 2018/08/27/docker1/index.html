@@ -391,7 +391,7 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <h2 id="容器技术基础知识架构："><a href="#容器技术基础知识架构：" class="headerlink" title="容器技术基础知识架构："></a>容器技术基础知识架构：</h2><p>&emsp;&emsp;早期通过ail技术实现，发展至vserver(chroot)，为使容器技术更加易用便出现了LXC，为解决容器的批量创建便出现了docker<br>&emsp;&emsp;LXC：LinuX Container，容器管理引擎，一组实现容器技术的工具<br>&emsp;&emsp;一个容器就相当于一个进程</p>
-<p>####&emsp;&emsp;追求的环境架构：<br>&emsp;&emsp;&emsp;&emsp;1、底层：硬件平台<br>&emsp;&emsp;&emsp;&emsp;2、虚拟隔离环境管理器<br>&emsp;&emsp;&emsp;&emsp;3、隔离环境：隔离的是用户空间<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;独立容器需隔离的内容：<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;UTS(主机名和域名)、Mount(文件系统，挂载树)、IPC(信号量、消息队列、共享内存，即进程间通信的专用通道)、PID、User、Network<br>&emsp;&emsp;&emsp;&emsp;namespaces：名称空间，包含上述6项内容<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;内核级操作：系统调用clone()、setns()，clone()用于创建进程、setns()用于将创建的进程放入容器</p>
+<h4 id="emsp-emsp-追求的环境架构："><a href="#emsp-emsp-追求的环境架构：" class="headerlink" title="&emsp;&emsp;追求的环境架构："></a>&emsp;&emsp;追求的环境架构：</h4><p>&emsp;&emsp;&emsp;&emsp;1、底层：硬件平台<br>&emsp;&emsp;&emsp;&emsp;2、虚拟隔离环境管理器<br>&emsp;&emsp;&emsp;&emsp;3、隔离环境：隔离的是用户空间<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;独立容器需隔离的内容：<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;UTS(主机名和域名)、Mount(文件系统，挂载树)、IPC(信号量、消息队列、共享内存，即进程间通信的专用通道)、PID、User、Network<br>&emsp;&emsp;&emsp;&emsp;namespaces：名称空间，包含上述6项内容<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;内核级操作：系统调用clone()、setns()，clone()用于创建进程、setns()用于将创建的进程放入容器</p>
 <h4 id="emsp-emsp-容器编排："><a href="#emsp-emsp-容器编排：" class="headerlink" title="&emsp;&emsp;容器编排："></a>&emsp;&emsp;容器编排：</h4><p>&emsp;&emsp;&emsp;&emsp;按指定顺序启动容器<br>&emsp;&emsp;&emsp;&emsp;编排工具：<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;docker：machine+swarm(将多个主机当一个编排)+compose(单机编排)组合使用<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ASF：mesos(实现统一资源分配)+marathon<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;kubernetes，简称k8s</p>
 <h4 id="emsp-emsp-容器镜像："><a href="#emsp-emsp-容器镜像：" class="headerlink" title="&emsp;&emsp;容器镜像："></a>&emsp;&emsp;容器镜像：</h4><p>&emsp;&emsp;&emsp;&emsp;dockerhub网站：hub.docker.com；容纳容器镜像站点，能找到大多数容器镜像</p>
 
@@ -523,7 +523,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#容器技术基础知识架构："><span class="toc-number">1.</span> <span class="toc-text">容器技术基础知识架构：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#emsp-emsp-容器编排："><span class="toc-number">1.0.1.</span> <span class="toc-text">  容器编排：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#emsp-emsp-容器镜像："><span class="toc-number">1.0.2.</span> <span class="toc-text">  容器镜像：</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#容器技术基础知识架构："><span class="toc-number">1.</span> <span class="toc-text">容器技术基础知识架构：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#emsp-emsp-追求的环境架构："><span class="toc-number">1.0.1.</span> <span class="toc-text">  追求的环境架构：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#emsp-emsp-容器编排："><span class="toc-number">1.0.2.</span> <span class="toc-text">  容器编排：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#emsp-emsp-容器镜像："><span class="toc-number">1.0.3.</span> <span class="toc-text">  容器镜像：</span></a></li></ol></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
